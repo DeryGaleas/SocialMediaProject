@@ -1,0 +1,18 @@
+
+
+@media (max-width: 767px) {
+    .desktop_container {
+      display: none;
+    }
+  }
+
+
+@media (min-width: 768px) {
+  .mobile_container {
+    display: none;
+  }
+}
+
+.subtitle_style{
+    word-wrap: break-word;
+}

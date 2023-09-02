@@ -1,0 +1,11 @@
+@media (max-width: 767px) {
+  .post_image_wrapper img {
+    height: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .post_image_wrapper img {
+    height: 500px;
+  }
+}

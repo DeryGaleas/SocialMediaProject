@@ -1,0 +1,86 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+
+{% block style_links %}
+    <link rel="stylesheet" href="{% static 'css/../../static/css/fiend_friends.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container main_container" style="margin-top: 3rem">
+    <div class="row">
+
+    <div class="col-1 desktop_container"></div>
+    <div class="">
+        <ul class="list-group  " >
+            {% for user in users %}
+          <li class="list-group-item ">
+
+              <div class="container desktop_container">
+                  <div class="row">
+
+                      <div class="col-1 d-flex align-items-center">
+                          {% if user.profile_picture %}
+                            <img class="logo" src="{{ user.profile_picture.url }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" alt="Profile Picture">
+                          {% else %}
+                            <img class="logo" src="" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" alt="Profile Picture">
+                          {% endif %}
+                      </div>
+                      <div class="col">
+                          <h5>{{ user.username }}</h5>
+                          <p>{{ user.description }}</p>
+                      </div>
+
+                          <form class="col-2 d-flex align-items-center" method="POST" action="" class="friend-request-response-form">
+                              {% csrf_token %}
+                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                            <input type="hidden" name="status" value="{{ True }}">
+                            <button style="width: 5px" type="submit" class="btn btn-primary col">Reject</button>
+
+                          </form>
+
+                          <form class="col-2 d-flex align-items-center" method="POST" action="" class="friend-request-Response-form">
+                              {% csrf_token %}
+                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                            <input type="hidden" name="status" value="{{ True }}">
+                            <button style="width: 5px" type="submit" class="btn btn-primary col">Accept</button>
+
+                          </form>
+
+                  </div>
+              </div>
+              <div class="container mobile_container">
+                  <div class="row">
+                      <div class="col-3 d-flex align-items-center">
+                          {% if user.profile_picture %}
+                            <img class="logo" src="{{ user.profile_picture.url }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" alt="Profile Picture">
+                          {% else %}
+                            <img class="logo" src="" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" alt="Profile Picture">
+                          {% endif %}
+                      </div>
+                      <div class="col-8">
+                          <h5>{{ x.username }}</h5>
+                          <p class="subtitle_style">{{ user.description }}</p>
+                          <div style="width: 90%">
+                              <form action="" method="POST" class="friend-request-form" >
+                                  {% csrf_token %}
+                                 <input type="hidden" name="user_id" value="{{ user.id }}">
+                                 <button style="" type="submit" class="btn btn-primary ">Add Friend</button>
+                              </form>
+
+                          </div>
+
+
+                      </div>
+                  </div>
+              </div>
+          </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    <div class="col-1 desktop_container"></div>
+    </div>
+</div>
+{% endblock %}

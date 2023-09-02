@@ -1,0 +1,45 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+
+{% block style_links %}
+<link rel="stylesheet" href="{% static 'css/../../static/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center" style="margin-top:5rem">
+    <div class="row justify-content-center">
+
+    <a href="/post/create_post" style="text-decoration: none;color:white"><button class="btn btn-secondary btn-lg btn-block">Create Post</button></a>
+    <div class="col-md-4 " style="width: 70%;">
+
+
+    {% for post in posts %}
+
+            <div style="margin-top:5rem">
+                {% if post.author.profile_picture %}
+                 <img class="logo" src="{{ post.author.profile_picture.url }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" alt="Profile Picture">
+                {% else %}
+                 <img class="logo" src="" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" alt="Profile Picture">
+                {% endif %}
+                {{ post.author }}
+            </div>
+            <div class="card mb-3" >
+                    {% if post.post_image %}
+                    <img src="{{ post.post_image.url }}" class="card-img-top" alt="...">
+                    {% else %}
+                    <img src="" class="card-img-top" alt="...">
+                    {% endif %}
+
+
+                <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.content }}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+    {% endfor %}
+    </div>
+    </div>
+</div>
+{% endblock %}

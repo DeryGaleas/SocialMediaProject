@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+  <h2 class="font-weight-light my-4 text-center">Update User Information</h2>
+    
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="small mb-1">Username:</label>
+                            {{ form.username }}
+                        <label class="small mb-1">Description:</label>
+                            {{ form.description }}
+                        <label class="small mb-1">Profile Picture:</label>
+                            {{ form.profile_picture }}
+                    </div>
+            </div>
+            <br><br>
+            <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
+        </div>
+  </form>
+
+{% endblock %}
